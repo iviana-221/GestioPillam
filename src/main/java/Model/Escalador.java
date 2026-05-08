@@ -1,7 +1,5 @@
 package Model;
 
-import Excepcions.ExcepcionsPropies.DadaInvalidaException;
-import Excepcions.ExcepcionsPropies;
 
 public class Escalador {
     private int id;
@@ -40,12 +38,11 @@ public class Escalador {
     }
 
     public void setEdat(int edat) {
-        if(edat < 0 && edat <= 120 ){
+        if (edat >= 0 && edat <= 120) {
             this.edat = edat;
-        }else {
-            throw new  DadaInvalidaException("L'edat ha de ser entre 0 i 110 anys.");
+        } else {
+            throw new IllegalArgumentException("L'edat ha de ser un valor entre 0 i 120.");
         }
-
     }
 
     public int getId() {
@@ -61,7 +58,7 @@ public class Escalador {
     }
     public void setNivellMaxim(String nivellMaxim) {
         if (!nivellMaxim.matches("^([4-9][abc]?\\+?)$")) {
-            throw new ExcepcionsPropies.DadaInvalidaException("El nivell '" + nivellMaxim + "' no segueix el format oficial.");
+            throw new IllegalArgumentException("El nivell '" + nivellMaxim + "' no segueix el format oficial.");
         }
         this.nivellMaxim = nivellMaxim;
     }

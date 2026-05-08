@@ -1,7 +1,5 @@
 package Model;
 
-import Excepcions.ExcepcionsPropies;
-import Excepcions.ExcepcionsPropies.MetresInvalidsException;
 
 public class Escola {
     private int id;
@@ -55,8 +53,8 @@ public class Escola {
     }
 
     public void setPopularitat(String popularitat) {
-        if (!popularitat.matches("^(baixa|mitjana|alta)$")) {
-            throw new ExcepcionsPropies.DadaInvalidaException("Popularitat ha de ser: baixa, mitjana o alta.");
+        if (popularitat == null || !popularitat.matches("^(baixa|mitjana|alta)$")) {
+            throw new IllegalArgumentException("La popularitat ha de ser: baixa, mitjana o alta.");
         }
         this.popularitat = popularitat;
     }

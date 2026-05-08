@@ -1,6 +1,5 @@
 package Model;
 
-import Excepcions.ExcepcionsPropies;
 
 public class Llarg {
     private int numero;
@@ -15,14 +14,14 @@ public class Llarg {
 
     public void setMetres(int metres) {
         if (metres < 15 || metres > 30) {
-            throw new ExcepcionsPropies.MetresInvalidsException(metres);
+            throw new IllegalArgumentException("La llargada del tram ha d'estar entre 15 i 30 metres.");
         }
         this.metres = metres;
     }
 
     public void setGrau(String grau) {
         if (!grau.matches("^([4-9][abc]?\\+?)$")) {
-            throw new ExcepcionsPropies.DadaInvalidaException("El grau del llarg '" + grau + "' no és vàlid.");
+            throw new IllegalArgumentException("El grau del llarg '" + grau + "' no és vàlid.");
         }
         this.grau = grau;
     }

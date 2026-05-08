@@ -8,7 +8,6 @@ public class ViaGel extends Via {
     private String ancoratge;
     private List<Llarg> llargs;
 
-    // Constructor completo
     public ViaGel(LocalDateTime data, String estat, String grau, int idCreador, int idSector, String orientacio, String nom, String restriccions, String tipusRoc, String ancoratge) {
         super(data, estat, grau, idCreador, idSector, orientacio, nom, restriccions, tipusRoc);
         setAncoratge(ancoratge);
@@ -20,8 +19,9 @@ public class ViaGel extends Via {
     }
 
     public void setAncoratge(String ancoratge) {
-        if (!ancoratge.matches("^(friends|tascons|bagues|pitons|Tricams|BigBros)$")) {
-            throw new Excepcions.ExcepcionsPropies.DadaInvalidaException("Ancoratge de gel no vàlid.");
+        String regex = "^(friends|tascons|bagues|pitons|Tricams|BigBros)$";
+        if (ancoratge == null || !ancoratge.matches(regex)) {
+            throw new IllegalArgumentException("L'ancoratge de gel no és vàlid.");
         }
         this.ancoratge = ancoratge;
     }

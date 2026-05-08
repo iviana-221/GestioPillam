@@ -2,9 +2,6 @@ package Model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import Excepcions.ExcepcionsPropies.DadaInvalidaException;
-import Excepcions.ExcepcionsPropies;
-
 public class Via {
 
     protected String nom;
@@ -15,7 +12,6 @@ public class Via {
     protected String tipusRoc;
     protected String restriccions;
 
-    //Para que el SQL lo identifique seguramente esté mal
     protected int idSector;
     protected int idCreador;
 
@@ -44,8 +40,9 @@ public class Via {
     }
 
     public void setEstat(String estat) {
-        if (!estat.matches("Apte") || (!estat.matches("contrucció") || (!estat.matches("tancada")))){
-            throw new ExcepcionsPropies.DadaInvalidaException("Estat invàlid.");
+        // Validamos que el String sea exactamente una de las tres opciones
+        if (estat == null || !estat.matches("^(Apte|construcció|tancada)$")) {
+            throw new IllegalArgumentException("Estat no vàlid. Valors permesos: Apte, construcció, tancada.");
         }
         this.estat = estat;
     }
@@ -57,7 +54,7 @@ public class Via {
 
     public void setGrau(String grau) {
         if (!grau.matches("^([4-9][abc]?\\+?)$")) {
-            throw new ExcepcionsPropies.DadaInvalidaException("Grau no valid.");
+            throw new IllegalArgumentException("Grau no valid.");
         }
         this.grau = grau;
     }
@@ -91,8 +88,8 @@ public class Via {
     }
 
     public void setOrientacio(String orientacio) {
-        if (!orientacio.matches("^(N|NE|NO|SE|SO|E|O|S)$")) {
-            throw new ExcepcionsPropies.DadaInvalidaException("Orientació incorrecta. Usa sigles: N, NE, S, SO...");
+        if (orientacio == null || !orientacio.matches("^(N|NE|NO|SE|SO|E|O|S)$")) {
+            throw new IllegalArgumentException("Orientació incorrecta.");
         }
         this.orientacio = orientacio;
     }
