@@ -10,7 +10,7 @@ public interface GenericDAO<T> {
 
     void eliminar(int id);
 
-    T buscarPerId(int id);
+    T LlistarUn(int id);
 
     List<T> llistarTots();
 }
